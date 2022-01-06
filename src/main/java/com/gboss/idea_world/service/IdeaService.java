@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class IdeaService {
@@ -29,6 +31,11 @@ public class IdeaService {
         ValidationUtils.validate(idea);
         ideaRepository.save(idea);
         return idea.getIdeaId();
+    }
+
+
+    public List<Idea> getIdeasForUser(String userId) {
+        return ideaRepository.findByUserId(userId);
     }
 
 }

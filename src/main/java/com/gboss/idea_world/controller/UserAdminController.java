@@ -2,6 +2,7 @@ package com.gboss.idea_world.controller;
 
 import com.gboss.idea_world.entity.User;
 import com.gboss.idea_world.exception.InvalidInputException;
+import com.gboss.idea_world.service.IdeaService;
 import com.gboss.idea_world.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,9 @@ public class UserAdminController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private IdeaService ideaService;
 
 
 
@@ -41,6 +45,11 @@ public class UserAdminController {
 	}
 
 
+
+	@GetMapping("/{userId}/ideas")
+	public ResponseEntity getIdeasForUser(@PathVariable("userId") String userId) {
+		return ResponseEntity.ok(ideaService.getIdeasForUser(userId));
+	}
 
 
 
